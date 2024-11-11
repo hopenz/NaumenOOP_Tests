@@ -96,34 +96,25 @@ public class BotLogicTest {
         Assertions.assertEquals("Нет вопросов для повторения",
                 fakeTestBot.getMessageByIndex(0));
 
-        // Нет вопросов для повторения при правильном ответе на вопрос
+        // вопрос на повторение добавляется при неправильном ответе
         botLogic.processCommand(user, "/test");
         // Вычислить 10^2
         botLogic.processCommand(user, "100");
         // Правильный ответ
-        botLogic.processCommand(user, "/repeat");
-        Assertions.assertEquals("Нет вопросов для повторения",
-                fakeTestBot.getMessageByIndex(4));
-
-        // При неправильном ответе ответ добавляется к вопросам на повторение
-        // Если ответить правильно - удаляется из вопросов на повторение
-        botLogic.processCommand(user, "/test");
-        // Вычислить 10^2
-        botLogic.processCommand(user, "1234");
+        botLogic.processCommand(user, "7");
         // Вы ошиблись
         botLogic.processCommand(user, "/repeat");
-        // Вычислить 10^2
-        Assertions.assertEquals("Вычислите степень: 10^2",
-                fakeTestBot.getMessageByIndex(8));
-        botLogic.processCommand(user, "100");
+        Assertions.assertEquals("Сколько будет 2 + 2 * 2",
+                fakeTestBot.getMessageByIndex(6));
+        botLogic.processCommand(user, "6");
         Assertions.assertEquals("Правильный ответ!",
-                fakeTestBot.getMessageByIndex(9));
+                fakeTestBot.getMessageByIndex(7));
         Assertions.assertEquals("Тест завершен",
-                fakeTestBot.getMessageByIndex(10));
+                fakeTestBot.getMessageByIndex(8));
 
         // Проверка, что в конце вопросов на повторение нет
         botLogic.processCommand(user, "/repeat");
         Assertions.assertEquals("Нет вопросов для повторения",
-                fakeTestBot.getMessageByIndex(11));
+                fakeTestBot.getMessageByIndex(9));
     }
 }

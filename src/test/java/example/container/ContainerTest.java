@@ -30,10 +30,11 @@ public class ContainerTest {
         Item item1 = new Item(1);
         Item item2 = new Item(2);
         container.add(item1);
-        container.add(item2);
-        Assertions.assertEquals(2, container.size());
         Assertions.assertTrue(container.contains(item1));
+        Assertions.assertEquals(1, container.size());
+        container.add(item2);
         Assertions.assertTrue(container.contains(item2));
+        Assertions.assertEquals(2, container.size());
     }
 
     /**
@@ -42,8 +43,13 @@ public class ContainerTest {
     @Test
     void methodsRemoveTest() {
         Item item1 = new Item(1);
+        Item item2 = new Item(2);
         container.add(item1);
+        container.add(item2);
+        Assertions.assertEquals(2, container.size());
         container.remove(item1);
+        Assertions.assertEquals(1, container.size());
         Assertions.assertFalse(container.contains(item1));
+        Assertions.assertTrue(container.contains(item2));
     }
 }
