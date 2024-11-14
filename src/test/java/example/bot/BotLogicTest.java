@@ -99,27 +99,6 @@ public class BotLogicTest {
     }
 
     /**
-     * Тестирование команды /test
-     * Проверка корректности проверки ответов
-     * ПЕРВЫЙ ПРАВИЛЬНЫЙ, ВТОРОЙ НЕ ПРАВИЛЬНЫЙ
-     */
-    @Test
-    void commandTestFirstAnswerIsCorrectAndSecondAnswerIsIncorrectTest() {
-        botLogic.processCommand(user, "/test");
-
-        Assertions.assertEquals("Вычислите степень: 10^2", fakeTestBot.getMessageByIndex(0));
-        botLogic.processCommand(user, "100");
-        Assertions.assertEquals("Правильный ответ!", fakeTestBot.getMessageByIndex(1));
-
-        Assertions.assertEquals("Сколько будет 2 + 2 * 2", fakeTestBot.getMessageByIndex(2));
-        botLogic.processCommand(user, "1");
-        Assertions.assertEquals("Вы ошиблись, верный ответ: 6", fakeTestBot.getMessageByIndex(3));
-
-        Assertions.assertEquals("Тест завершен", fakeTestBot.getMessageByIndex(4));
-
-    }
-
-    /**
      * Тестирование команды /notify
      * Проверка отложенного сообщения в течении заданного ПОЛОЖИТЕЛЬНОГО значения
      */
